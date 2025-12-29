@@ -22,14 +22,14 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: |
-          backend/package-lock.json
-          frontend/package-lock.json
           
     # BACKEND
     - name: Instalar dependencias del backend
-      run: npm ci
+      run: npm install
+      working-directory: backend
+      
+    - name: Generar package-lock.json (backend)
+      run: npm install --package-lock-only
       working-directory: backend
       
     - name: Linter del backend
@@ -42,7 +42,11 @@ jobs:
       
     # FRONTEND
     - name: Instalar dependencias del frontend
-      run: npm ci
+      run: npm install
+      working-directory: frontend
+      
+    - name: Generar package-lock.json (frontend)
+      run: npm install --package-lock-only
       working-directory: frontend
       
     - name: Linter del frontend
@@ -132,5 +136,3 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/online-sports-backend:latest
           ${{ secrets.DOCKERHUB_USERNAME }}/online-sports-backend:${{ github.sha }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
