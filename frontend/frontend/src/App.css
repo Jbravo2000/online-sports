@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.backend-status {
+  color: #4cd964;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.filtros {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+}
+
+.filtros h2 {
+  margin-bottom: 15px;
+  color: #00dbde;
+}
+
+.botones-deportes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.boton-deporte {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.boton-deporte:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.boton-deporte.activo {
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 219, 222, 0.3);
+}
+
+.partidos {
+  margin-bottom: 40px;
+}
+
+.partidos h2 {
+  margin-bottom: 20px;
+  color: #00dbde;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.tabla-partidos {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.tabla-partidos th {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #00dbde;
+}
+
+.tabla-partidos td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tabla-partidos tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.deporte {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.deporte.futbol { color: #4cd964; }
+.deporte.baloncesto { color: #ff9500; }
+.deporte.tenis { color: #ff2d55; }
+
+.estado {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.estado.programado {
+  background: rgba(76, 217, 100, 0.2);
+  color: #4cd964;
+}
+
+.noticias {
+  margin-bottom: 40px;
+}
+
+.noticias h2 {
+  margin-bottom: 20px;
+  color: #00dbde;
+}
+
+.tarjetas-noticias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-noticia {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.tarjeta-noticia:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta-noticia h3 {
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.tarjeta-noticia p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.fecha-noticia {
+  color: #00dbde;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  margin-top: 40px;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.cargando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #00dbde;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .tabla-contenedor {
+    padding: 10px;
+  }
+  
+  .tabla-partidos th,
+  .tabla-partidos td {
+    padding: 10px;
+  }
+  
+  .tarjetas-noticias {
+    grid-template-columns: 1fr;
+  }
+}
