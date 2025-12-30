@@ -33,9 +33,34 @@ jobs:
       - name: Ejecutar linter del backend
         run: npm run lint --if-present
         working-directory: backend
+    # ===========================
+  # JOB 2: DEPLOY FRONTEND (CD)
+  # ===========================
+  deploy_frontend:
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Descargar artefacto del frontend
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist
+
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
 
   # ===========================
-  # JOB 2: DOCKER BACKEND (CD)
+  # JOB 3: DOCKER BACKEND (CD)
   # ===========================
   build_and_push_backend:
     needs: ci
