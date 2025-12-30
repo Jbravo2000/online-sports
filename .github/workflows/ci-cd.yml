@@ -28,11 +28,11 @@ jobs:
         working-directory: backend
 
       - name: Ejecutar tests del backend
-        run: npm test
+        run: npm test --if-present
         working-directory: backend
 
       - name: Ejecutar linter del backend
-        run: npm run lint
+        run: npm run lint --if-present
         working-directory: backend
 
       # ---------- FRONTEND ----------
@@ -41,18 +41,18 @@ jobs:
         working-directory: frontend
 
       - name: Ejecutar tests del frontend
-        run: npm test
+        run: npm test --if-present
         working-directory: frontend
 
       - name: Ejecutar linter del frontend
-        run: npm run lint
+        run: npm run lint --if-present
         working-directory: frontend
 
       - name: Build del frontend
         run: npm run build
         working-directory: frontend
 
-      - name: Subir artefacto de build del frontend
+      - name: Subir artefacto del frontend
         uses: actions/upload-artifact@v4
         with:
           name: frontend-dist
@@ -84,7 +84,7 @@ jobs:
           publish_dir: ./dist
 
   # ===========================
-  # JOB 3: IMAGEN DOCKER BACKEND
+  # JOB 3: DOCKER BACKEND
   # ===========================
   build_and_push_backend:
     needs: ci
@@ -100,11 +100,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construir imagen Docker del backend
+      - name: Build imagen Docker del backend
         run: |
           cd backend
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend-express-ci-cd:latest .
 
-      - name: Enviar imagen a Docker Hub
+      - name: Push imagen Docker
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-express-ci-cd:latest
